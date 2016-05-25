@@ -1,0 +1,15 @@
+int
+	main(int argc, char *argv[]) {
+	        maze_t M;            /* the maze */
+
+	        read_maze(&M);
+	        print_stage_one(&M);
+	        assign_reachability(&M);
+	        print_stage_two(&M);
+	        print_stage_three(&M);
+	        if (M.hassoln) {
+	                label_final_path(&M);
+	                print_stage_four(&M);
+	        }
+	        return 0;
+	}

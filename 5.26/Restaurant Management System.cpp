@@ -303,7 +303,7 @@ void seeMaterial(User type) {
             else {
                 printf("%-10s %-10s\n", "Name", "Price");
                 Material m = materialController.getMaterial(name);
-                printf("%-10s %-10.3f", m.getName().c_str(), m.getPrice());
+                printf("%-10s %-10.3f\n", m.getName().c_str(), m.getPrice());
             }
         } else if(choice == 3) {
             printf("Please enter the name and price of material: ");
@@ -587,7 +587,7 @@ void customerOp() {
             } else puts("Menu is empty");
         } else if(choice == 2) {
             if(cur.getName() == "NULL") {
-                printf("Please login first");
+                printf("Please login first\n");
             } else {
                 printf("Please enter the id and name of dish: ");
                 scanf("%d%s", &id, name);
@@ -599,11 +599,15 @@ void customerOp() {
                 }
             }
         } else if(choice == 3) {
-            double cost = cur.checkOut();
-            printf("The total fee is %.3f\n", cost);
-            customerController.del(cur);
-            cur = Customer(-1, "NULL");
-            puts("You have logged out and checked out successfully");
+            if(cur.getName() == "NULL") {
+                printf("Please login first\n");
+            } else {
+                double cost = cur.checkOut();
+                printf("The total fee is %.3f\n", cost);
+                customerController.del(cur);
+                cur = Customer(-1, "NULL");
+                puts("You have logged out and checked out successfully");
+            }
         }
         if(choice != -2) {
             printf("Press any key to continue...");
